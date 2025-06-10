@@ -1,0 +1,45 @@
+<configuration>
+    <appender name="AGENT_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/agent.log</file> <!-- Change path here -->
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="TEST_RES_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/test_res.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <appender name="ASSISTANT_MSG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/assistant_msg.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <!-- Configure TestLogger to only use TEST_RES_FILE appender -->
+    <logger name="TestLogger" level="INFO" additivity="false">
+        <appender-ref ref="TEST_RES_FILE" />
+    </logger>
+
+    <logger name="AgentLogger" level="INFO" additivity="false">
+        <appender-ref ref="AGENT_FILE" />
+    </logger>
+
+    <logger name="AssistantLogger" level="INFO" additivity="false">
+        <appender-ref ref="ASSISTANT_MSG_FILE" />
+    </logger>
+
+</configuration>

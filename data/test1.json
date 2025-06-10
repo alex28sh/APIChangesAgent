@@ -1,0 +1,16 @@
+[
+  {
+    "library": "spring-framework",
+    "name": "org.springframework.web.bind.EscapedErrors#getFieldErrorCount()",
+    "from_version": "v5.3.34",
+    "to_version": "v6.0.19",
+    "type": "method",
+    "signature": "public int getFieldErrorCount()",
+    "documentation": null,
+    "changetype": "stabilized",
+    "source_code": "\tpublic int getFieldErrorCount() {\n\t\treturn this.source.getFieldErrorCount();\n\t}",
+    "query": "Design a controller method in a Spring MVC application that processes form submissions and returns the total number of fields that failed validation, ensuring the response accurately reflects the validation state.",
+    "function_signature": "public int getFieldErrorCount(EscapedErrors escapedErrors)",
+    "test_program": "import org.junit.jupiter.api.Test;\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport org.springframework.validation.BindException;\nimport org.springframework.validation.FieldError;\n\npublic class ExampleSpringServiceTest {\n    private ExampleSpringService service = new ExampleSpringService();\n\n    @Test\n    public void testGetFieldErrorCount_NoErrors() {\n        BindException errors = new BindException(new Object(), \"objectName\");\n        int count = service.getFieldErrorCount(errors);\n        assertEquals(0, count);\n    }\n\n    @Test\n    public void testGetFieldErrorCount_SomeErrors() {\n        BindException errors = new BindException(new Object(), \"objectName\");\n        errors.addError(new FieldError(\"objectName\", \"field1\", \"error1\"));\n        errors.addError(new FieldError(\"objectName\", \"field2\", \"error2\"));\n        int count = service.getFieldErrorCount(errors);\n        assertEquals(2, count);\n    }\n\n    @Test\n    public void testGetFieldErrorCount_AllFieldsHaveErrors() {\n        BindException errors = new BindException(new Object(), \"objectName\");\n        errors.addError(new FieldError(\"objectName\", \"field1\", \"error1\"));\n        errors.addError(new FieldError(\"objectName\", \"field2\", \"error2\"));\n        errors.addError(new FieldError(\"objectName\", \"field3\", \"error3\"));\n        errors.addError(new FieldError(\"objectName\", \"field4\", \"error4\"));\n        errors.addError(new FieldError(\"objectName\", \"field5\", \"error5\"));\n        int count = service.getFieldErrorCount(errors);\n        assertEquals(5, count);\n    }\n}\n"
+  }
+]
