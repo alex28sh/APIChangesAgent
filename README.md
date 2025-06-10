@@ -40,7 +40,7 @@ These stages take different set of tools in their disposal. This separation is e
 
 ## Results
 
-On a small bench of API changes `data/tests_spring_mini_filtered.json` the agent was able to fix 90% of the changes in 30 iterations.
+On a small bench of API changes `data/tests_spring_mini_filtered.json` the agent was able to fix 90% of the changes (gpt4.1 model) in 30 iterations.
 Results are collected in `data/results_mini_filtered.json` file.
 
 ## Benchmark collection
